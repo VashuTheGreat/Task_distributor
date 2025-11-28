@@ -1,3 +1,17 @@
+
+
+.join-btn{
+  border: solid black 2px;
+  transition: transform 0.6s ease, border 0.3s ease;
+
+}
+
+
+.join-btn:hover {
+  border: solid black 2px;
+  transform: translateY(-5px);
+}
+
 .dashboard-page {
   min-height: 100vh;
   background: var(--neutral-50);
@@ -129,4 +143,5 @@
   .empty-actions .btn {
     width: 100%;
   }
+
 }

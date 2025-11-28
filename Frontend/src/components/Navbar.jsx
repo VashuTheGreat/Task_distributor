@@ -28,9 +28,9 @@ const Navbar = () => {
               </Link>
               <div className="user-menu">
                 <div className="user-avatar">
-                  {user?.name?.charAt(0).toUpperCase() || 'U'}
+                  {user?.userName?.charAt(0).toUpperCase() || 'U'}
                 </div>
-                <span className="user-name">{user?.name || 'User'}</span>
+                <span className="user-name">{user?.userName || 'User'}</span>
                 <button className="btn btn-ghost btn-sm" onClick={handleLogout}>
                   Logout
                 </button>

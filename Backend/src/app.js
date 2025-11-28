@@ -8,13 +8,14 @@ const { createRoom, joinRoom } = require("./controlers/admin.create.room");
 const { fetchUserRooms, getRoomDetails } = require("./controlers/fetchRoom");
 const { getRoomProjects, getProjectDetails, updateTaskStatus } = require("./controlers/fetchProjects");
 const { getCurrentUser, getRoomMembers } = require("./controlers/user.fetch");
+const FetchChatByroomId=require("./controlers/fetchChat")
 
 const cookieParser = require("cookie-parser");
 
 const app = express();
 
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: 'http://localhost:5173' || 'http://localhost:5174' ,
   credentials: true
 }));
 
@@ -42,6 +43,7 @@ app.get("/user/api/project/:projectId", tokenValidator, isUserExist, getProjectD
 app.post("/user/api/create/project", tokenValidator, isUserExist, createProject)
 app.post("/user/api/append/task", tokenValidator, isUserExist, AppendTask)
 app.put("/user/api/project/:projectId/task/:taskId/status", tokenValidator, isUserExist, updateTaskStatus);
+app.get("/fetchChat/:roomId",FetchChatByroomId);
 
 
 

@@ -68,7 +68,9 @@ const Dashboard = () => {
             </div>
             <div className="header-actions">
               <button
-                className="btn btn-outline"
+              
+                className=" btn join-btn "
+                
                 onClick={() => setShowJoinModal(true)}
               >
                 Join Room

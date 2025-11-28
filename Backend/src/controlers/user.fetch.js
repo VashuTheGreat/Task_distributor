@@ -2,7 +2,9 @@ const User = require("../models/user.model");
 
 async function getCurrentUser(req, res) {
     try {
+        
         const userId = req.dbUser._id;
+        console.log("userId",userId);
         const user = await User.findById(userId).select('-password');
         
         if (!user) {

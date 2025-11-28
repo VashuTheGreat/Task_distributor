@@ -3,6 +3,7 @@ const Room = require("../models/room.model");
 async function createProject(req, res) {
   try {
     const { projectName, room_id } = req.body;
+    console.log("project created",projectName);
 
     if (!projectName || !room_id) {
       return res.status(400).json({ message: "projectName and room_id required" });
@@ -34,6 +35,7 @@ async function createProject(req, res) {
 async function AppendTask(req, res) {
   try {
     const { project_id, title, description, asign_id, status, deadline } = req.body;
+    console.log("tast appendded",status)
     const userId = req.dbUser._id; 
 
     const project = await Project.findById(project_id);

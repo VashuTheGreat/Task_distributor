@@ -6,15 +6,15 @@ class ApiService {
   }
 
   getToken() {
-    return localStorage.getItem("authToken");
+    return localStorage.getItem("user");
   }
 
   setToken(token) {
-    localStorage.setItem("authToken", token);
+    localStorage.setItem("user", token);
   }
 
   removeToken() {
-    localStorage.removeItem("authToken");
+    localStorage.removeItem("user");
   }
 
   async request(endpoint, options = {}) {
@@ -74,14 +74,20 @@ class ApiService {
       body: JSON.stringify(credentials),
     });
 
+   if (response.user) {
+    localStorage.setItem("user", JSON.stringify(response.user));
+  }
+
     return response;
   }
 
   async getCurrentUser() {
-    const response = await this.request("/user/api/me", {
-      method: "GET",
-    });
-    return response.user;
+    // const response = await this.request("/user/api/me", {
+    //   method: "GET",
+    // });
+
+    const user=localStorage.getItem("user")|| null
+    return user
   }
 
   async getRooms() {

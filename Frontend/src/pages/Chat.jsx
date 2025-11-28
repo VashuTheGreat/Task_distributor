@@ -44,6 +44,7 @@ const Chat = () => {
   }, [messages]);
 
   const handleSendMessage = (e) => {
+    console.log("hel")
     e.preventDefault();
 
     if (!newMessage.trim()) return;
@@ -60,6 +61,18 @@ const Chat = () => {
     socketService.sendMessage(messageData);
     setNewMessage('');
   };
+
+  useEffect(()=>{
+    fetch(`http://localhost:3000/fetchChat/${roomId}`).then((data)=>{
+      return data.json();
+    }).then((data)=>{
+      console.log(data);
+      setMessages(data.details||[]);
+      
+    })
+   
+
+  },[])
 
   return (
     <div className="chat-page">

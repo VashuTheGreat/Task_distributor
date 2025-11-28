@@ -25,6 +25,7 @@ function chatController(server) {
 
         socket.on('chat message', async (msg) => {
             try {
+                console.log(msg)
                 const savedMessage = await Chats.create(msg);
                 
                 if (msg.roomId) {
