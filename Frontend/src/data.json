@@ -1,0 +1,100 @@
+{
+    "rooms": [
+        {
+            "id": "room-alpha-123",
+            "name": "Task Distributor Dev",
+            "adminId": "user-1",
+            "userIds": [
+                "user-1",
+                "user-2",
+                "user-3"
+            ]
+        }
+    ],
+    "users": [
+        {
+            "id": "user-1",
+            "name": "Alice Admin",
+            "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Alice",
+            "isOnline": true
+        },
+        {
+            "id": "user-2",
+            "name": "Bob Builder",
+            "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Bob",
+            "isOnline": false
+        },
+        {
+            "id": "user-3",
+            "name": "Charlie Coder",
+            "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Charlie",
+            "isOnline": true
+        }
+    ],
+    "tasks": [
+        {
+            "id": "task-1",
+            "title": "Initialize Project Repo",
+            "description": "Set up the git repository and initial folder structure.",
+            "assignedTo": "user-1",
+            "status": "Completed",
+            "roomId": "room-alpha-123"
+        },
+        {
+            "id": "task-2",
+            "title": "Design Database Schema",
+            "description": "Create the ER diagram for users, rooms, and tasks.",
+            "assignedTo": "user-2",
+            "status": "Done",
+            "roomId": "room-alpha-123"
+        },
+        {
+            "id": "task-3",
+            "title": "Implement Authentication",
+            "description": "Setup JWT based auth for login/signup.",
+            "assignedTo": "user-2",
+            "status": "Pending",
+            "roomId": "room-alpha-123"
+        },
+        {
+            "id": "task-4",
+            "title": "Build Chat Component",
+            "description": "Frontend component for real-time messaging.",
+            "assignedTo": "user-3",
+            "status": "Not Done",
+            "roomId": "room-alpha-123"
+        }
+    ],
+    "messages": [
+        {
+            "id": "msg-1",
+            "senderId": "user-1",
+            "content": "Welcome to the Task Distributor project room!",
+            "timestamp": "2023-10-27T10:00:00Z"
+        },
+        {
+            "id": "msg-2",
+            "senderId": "user-2",
+            "content": "Thanks Alice! Ready to get started.",
+            "timestamp": "2023-10-27T10:05:00Z"
+        },
+        {
+            "id": "msg-3",
+            "senderId": "user-3",
+            "content": "Hi everyone. I'll pick up the Chat Component task.",
+            "timestamp": "2023-10-27T10:06:00Z"
+        },
+        {
+            "id": "msg-4",
+            "senderId": "user-1",
+            "content": "Great, I've assigned it to you, Charlie.",
+            "timestamp": "2023-10-27T10:07:00Z"
+        },
+        {
+            "id": "msg-5",
+            "senderId": "user-3",
+            "content": "Awesome, I see it on my board now.",
+            "timestamp": "2023-10-27T10:08:00Z"
+        }
+    ]
+}
