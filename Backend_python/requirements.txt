@@ -1,0 +1,15 @@
+langchain
+langchain-core
+langchain-community
+langgraph
+langchain-groq
+vconsoleprint
+
+
+python-dotenv
+pydantic
+
+fastapi
+uvicorn
+
+requests

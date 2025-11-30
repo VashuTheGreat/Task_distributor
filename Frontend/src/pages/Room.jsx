@@ -136,6 +136,10 @@ const Room = () => {
               </div>
             </div>
             <div className="header-actions">
+<div className="text-blue-600 font-semibold">
+  Room ID: <span className="text-red-600 font-bold">{roomId}</span>
+</div>
+
               <button className="btn btn-outline" onClick={handleOpenChat}>
                 💬 Open Chat
               </button>

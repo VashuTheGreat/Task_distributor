@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './CreateTaskForm.css';
 
 const CreateTaskForm = ({ onClose, onCreate, roomMembers = [] }) => {
@@ -11,6 +12,9 @@ const CreateTaskForm = ({ onClose, onCreate, roomMembers = [] }) => {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [showAiInput, setShowAiInput] = useState(false);
+  const [aiQuery, setAiQuery] = useState('');
+  const [aiLoading, setAiLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -18,6 +22,36 @@ const CreateTaskForm = ({ onClose, onCreate, roomMembers = [] }) => {
       [e.target.name]: e.target.value,
     });
     setError('');
+  };
+
+  const handleAiGenerate = async () => {
+    if (!aiQuery.trim()) {
+      setError('Please enter a query for AI generation');
+      return;
+    }
+
+    setAiLoading(true);
+    setError('');
+
+    try {
+      const response = await axios.post('/python/airesponse', {
+        query: aiQuery
+      });
+
+      // Auto-fill title and description
+      setFormData({
+        ...formData,
+        title: response.data.title,
+        description: response.data.description
+      });
+
+      setShowAiInput(false);
+      setAiQuery('');
+    } catch (err) {
+      setError(err.response?.data?.detail || 'Failed to generate task with AI');
+    } finally {
+      setAiLoading(false);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -63,6 +97,55 @@ const CreateTaskForm = ({ onClose, onCreate, roomMembers = [] }) => {
               {error}
             </div>
           )}
+
+          {/* AI Generation Section */}
+          <div className="ai-generation-section">
+            <button
+              type="button"
+              className="btn btn-outline"
+              onClick={() => setShowAiInput(!showAiInput)}
+              disabled={loading}
+              style={{ marginBottom: '10px', width: '100%' }}
+            >
+              {showAiInput ? '❌ Cancel AI Generation' : '✨ Generate with AI'}
+            </button>
+
+            {showAiInput && (
+              <div className="ai-input-container" style={{ marginBottom: '20px' }}>
+                <div className="input-group">
+                  <label htmlFor="aiQuery" className="input-label">
+                    Describe your task
+                  </label>
+                  <input
+                    type="text"
+                    id="aiQuery"
+                    className="input"
+                    placeholder="e.g., I want to create a project about natural language processing"
+                    value={aiQuery}
+                    onChange={(e) => setAiQuery(e.target.value)}
+                    disabled={aiLoading}
+                    autoFocus
+                  />
+                </div>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={handleAiGenerate}
+                  disabled={aiLoading}
+                  style={{ width: '100%' }}
+                >
+                  {aiLoading ? (
+                    <>
+                      <div className="spinner-small"></div>
+                      Generating...
+                    </>
+                  ) : (
+                    '🤖 Generate Task'
+                  )}
+                </button>
+              </div>
+            )}
+          </div>
 
           <div className="input-group">
             <label htmlFor="title" className="input-label">
